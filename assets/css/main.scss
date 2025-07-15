@@ -134,6 +134,7 @@ body {
   position: relative;
   min-height: 50vh;
   height: 50vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,7 +158,6 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 700px;
   margin: 0 auto;
   text-align: center;
   padding: 2rem 1rem;
@@ -266,7 +266,15 @@ body {
   color: $color-accent-dark;
 }
 // Responsive
+@media (max-width: 768px) {
+  .hero-overlay {
+    padding: 2rem 1rem;
+  }
+}
 @media (max-width: 600px) {
+  .hero-overlay {
+    padding: 1.5rem 0.5rem;
+  }
   .hero-overlay h1 {
     font-size: 1.6rem;
   }
