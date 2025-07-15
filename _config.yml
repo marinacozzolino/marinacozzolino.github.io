@@ -1,3 +1,4 @@
+# Jekyll Configuration for Marina Cozzolino Portfolio
 highlighter: rouge
 excerpt_separator: "<!--more-->"
 plugins:
