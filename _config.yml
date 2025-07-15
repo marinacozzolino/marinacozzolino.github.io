@@ -4,6 +4,11 @@ excerpt_separator: "<!--more-->"
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
+# Sass configuration for GitHub Pages
+sass:
+  sass_dir: _sass
+  style: compressed
 defaults:
   - scope:
       path: ""
