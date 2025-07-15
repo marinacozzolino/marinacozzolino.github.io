@@ -1,0 +1,38 @@
+# === Jekyll / GitHub Pages ===
+_site/                   # Generated site
+.sass-cache/             # Sass cache
+.jekyll-cache/           # Jekyll cache
+.jekyll-metadata         # Jekyll metadata file
+
+# Bundler / Ruby
+.bundle/                 # Bundler config
+vendor/bundle/           # Vendor gems
+
+# === Node / JavaScript ===
+node_modules/            # npm packages
+package-lock.json        # Uncomment if you don't want to track lockfile
+yarn.lock                # Uncomment if you don't want to track lockfile
+npm-debug.log*           # npm debug logs
+yarn-error.log*          # Yarn error logs
+
+# === Environment Files ===
+.env                     # Environment variables
+.env.*.local             # Local overrides
+
+# === OS / Editor Files ===
+.DS_Store                # macOS Finder metadata
+Thumbs.db                # Windows image cache
+*.swp                    # Vim swap files
+*.bak                    # Backup files
+*.tmp                    # Temporary files
+.vscode/                 # VSCode settings
+.idea/                   # IntelliJ IDEA settings
+
+# === Logs ===
+*.log
+
+# === Optional / Misc ===
+dist/                    # Distribution builds (if any)
+build/                   # Build artifacts
+coverage/                # Test coverage reports
+.cursor/

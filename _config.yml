@@ -1,0 +1,19 @@
+highlighter: rouge
+excerpt_separator: "<!--more-->"
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/og-image.jpg
+seo:
+  title: "Your Site Title"
+  description: "Portfolio, blog, and data science projects by Your Name."
+  image: /assets/img/og-image.jpg
+  twitter:
+    card: summary_large_image
+    username: yourusername
+  facebook:
+    publisher: yourusername 

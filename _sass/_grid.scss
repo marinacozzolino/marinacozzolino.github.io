@@ -1,0 +1,14 @@
+// 12-column grid SCSS mixins
+@mixin grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+@mixin grid-col($cols, $total: 12) {
+  flex: 0 0 percentage($cols / $total);
+  max-width: percentage($cols / $total);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+} 
