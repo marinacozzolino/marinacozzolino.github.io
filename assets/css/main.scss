@@ -779,4 +779,34 @@ body {
 }
 .dark-mode .contact-socials a {
   color: $color-accent-dark;
+}
+
+// Contact Links (Email & WhatsApp)
+.contact-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: $color-accent;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+.contact-btn:hover {
+  background: darken($color-accent, 10%);
+  transform: translateY(-2px);
+}
+.dark-mode .contact-btn {
+  background: $color-accent-dark;
+}
+.dark-mode .contact-btn:hover {
+  background: lighten($color-accent-dark, 10%);
 } 
