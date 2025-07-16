@@ -425,12 +425,32 @@ h1, h2, h3 {
 .contacts-icons {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 3.5rem;
   margin-top: 1.5rem;
 }
 .contacts-icons a {
   color: var(--color-secondary);
-  transition: color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contacts-icons a[aria-label="LinkedIn"] svg {
+  color: #0077B5;
+}
+.contacts-icons a[aria-label="Email"] svg {
+  color: #EA4335;
+}
+.contacts-icons a[aria-label="WhatsApp"] svg {
+  color: #25D366;
+}
+.contacts-icons a[aria-label="GitHub"] svg {
+  color: #181717;
+}
+.contacts-icons a[aria-label="Medium"] svg {
+  color: #00ab6c;
+}
+.contacts-icons a[aria-label="Kaggle"] svg {
+  color: #20BEFF;
 }
 .contacts-icons a:hover {
   color: var(--color-accent);
