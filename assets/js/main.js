@@ -45,4 +45,53 @@
       });
     });
   });
+})();
+
+// Modal logic for portfolio and blog cards
+(function() {
+  function openModal(title, desc, img, link) {
+    const overlay = document.getElementById('modal-overlay');
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-desc').textContent = desc;
+    const modalImg = document.getElementById('modal-img');
+    if (img) {
+      modalImg.src = img;
+      modalImg.style.display = '';
+    } else {
+      modalImg.style.display = 'none';
+    }
+    const modalLink = document.getElementById('modal-link');
+    if (link) {
+      modalLink.href = link;
+      modalLink.style.display = '';
+    } else {
+      modalLink.style.display = 'none';
+    }
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.portfolio-card, .blog-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal(
+          card.getAttribute('data-title'),
+          card.getAttribute('data-desc'),
+          card.getAttribute('data-img'),
+          card.getAttribute('data-link')
+        );
+      });
+    });
+    document.querySelector('.modal-close').addEventListener('click', closeModal);
+    document.getElementById('modal-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  });
 })(); 
