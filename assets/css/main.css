@@ -416,6 +416,26 @@ h1, h2, h3 {
   margin-bottom: 2rem;
   text-align: center;
 }
+.contacts-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 0 1rem 0;
+}
+.contacts-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+.contacts-icons a {
+  color: var(--color-secondary);
+  transition: color 0.2s, transform 0.2s;
+}
+.contacts-icons a:hover {
+  color: var(--color-accent);
+  transform: scale(1.15);
+}
 @media (max-width: 900px) {
   .about-container {
     flex-direction: column;
