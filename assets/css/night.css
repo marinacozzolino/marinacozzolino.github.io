@@ -49,7 +49,6 @@ body {
   background: rgba(41, 33, 44, 0.4);
   border-bottom: 1px solid #b5a3a8;
   box-shadow: 0 2px 4px rgba(0,0,0,0.01);
-  margin-bottom: 2rem;
 }
 
 .nav {
@@ -97,7 +96,7 @@ body {
   flex: 1 0 auto;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 1rem 3rem 1rem;
+  padding: 0;
 }
 
 .site-footer {
@@ -119,9 +118,17 @@ body {
   overflow: hidden;
   background: #29212c;
 }
+
+/* Add padding to non-hero sections */
+section:not(#hero) {
+  padding: 2rem 1rem 3rem 1rem;
+}
 #vanta-bg {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -941,14 +948,12 @@ h1, h2, .section-title, .hero-overlay h1 {
   margin: 0 auto 0.5rem auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 8px 20px rgba(250, 44, 86, 0.4));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s ease;
   transform: translateX(50px);
 }
 
 .hero-logo-img:hover {
   transform: translateX(50px) scale(1.05);
-  filter: drop-shadow(0 6px 20px rgba(250, 44, 86, 0.5));
 }
 
 /* Remove the old circular logo styling */

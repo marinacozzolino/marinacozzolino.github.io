@@ -28,6 +28,13 @@
   // Apply theme
   function applyTheme(theme) {
     currentTheme = theme;
+    
+    // Destroy existing Vanta instance if it exists
+    if (window.vantaEffect) {
+      window.vantaEffect.destroy();
+      window.vantaEffect = null;
+    }
+    
     themeStylesheet.href = themes[theme];
     
     // Update icon visibility
@@ -46,6 +53,11 @@
     themeToggle.setAttribute('aria-label', 
       theme === 'day' ? 'Switch to night theme' : 'Switch to day theme'
     );
+    
+    // Dispatch custom event for Vanta reinitialization
+    setTimeout(() => {
+      document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
+    }, 100);
   }
   
   // Toggle theme

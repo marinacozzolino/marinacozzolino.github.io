@@ -61,30 +61,64 @@
   });
 })();
 
-// VANTA.BIRDS hero background
+// VANTA.js hero background - theme aware
 (function() {
   document.addEventListener('DOMContentLoaded', function() {
-    if (window.VANTA && window.VANTA.BIRDS) {
-      window.VANTA.BIRDS({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        backgroundColor: 0x29212c, // raisin-black background
-        color1: 0xff1744, // vibrant red (like the "G" in Galaxy)
-        color2: 0xff9500, // bright orange (like the "y" in Galaxy)
-        birdSize: 0.40,
-        wingSpan: 40.00,
-        speedLimit: 3.00,
-        // quantity: 30.00,
-        separation: 49.00,
-        backgroundAlpha: 0.15
-      });
+    function initVanta() {
+      // Destroy existing Vanta instance if it exists
+      if (window.vantaEffect) {
+        window.vantaEffect.destroy();
+        window.vantaEffect = null;
+      }
+      
+      const themeStylesheet = document.getElementById('theme-stylesheet');
+      const isNightTheme = themeStylesheet && themeStylesheet.href.includes('night.css');
+      
+      if (isNightTheme && window.VANTA && window.VANTA.DOTS) {
+        // Night theme - use DOTS
+        window.vantaEffect = window.VANTA.DOTS({
+          el: "#vanta-bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          backgroundColor: 0x29212c, // raisin-black background
+          color: 0xff1744, // vibrant red
+          color2: 0x29212c, // bright orange
+          size: 4.00,
+          spacing: 30.00
+        });
+      } else if (!isNightTheme && window.VANTA && window.VANTA.BIRDS) {
+        // Day theme - use BIRDS
+        window.vantaEffect = window.VANTA.BIRDS({
+          el: "#vanta-bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          backgroundColor: 0xf5f5f5, // light gray background
+          color1: 0x5B3B3D, // muted maroon
+          color2: 0x365472, // slate blue
+          birdSize: 0.40,
+          wingSpan: 40.00,
+          speedLimit: 3.00,
+          separation: 49.00,
+          backgroundAlpha: 0.15
+        });
+      }
     }
+    
+    // Initialize Vanta
+    initVanta();
+    
+    // Re-initialize when theme changes
+    document.addEventListener('themeChanged', initVanta);
   });
 })();
 
