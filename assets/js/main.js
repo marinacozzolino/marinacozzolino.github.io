@@ -12,12 +12,14 @@
         scale: 1.00,
         scaleMobile: 1.00,
         backgroundColor: 0xffffff,
-        color1: 0x690000,
-        birdSize: 0.60,
+        color1: 0x80CBC4,
+        color2: 0xFFB997,
+        birdSize: 0.40,
         wingSpan: 40.00,
-        speedLimit: 7.00,
+        speedLimit: 3.00,
+        // quantity: 30.00,
         separation: 49.00,
-        backgroundAlpha: 0.25
+        backgroundAlpha: 0.15
       });
     }
   });

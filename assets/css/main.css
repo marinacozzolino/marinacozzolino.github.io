@@ -1,9 +1,22 @@
+/* Color palette variables for easy management */
+:root {
+  --color-bg:        #F8FAFB;  /* Off-White Smoke */
+  --color-text:      #2B2D42;  /* Deep Slate */
+  --color-headline:  #0D1B2A;  /* Midnight Charcoal */
+  --color-secondary: #5A6378;  /* Cloud Gray */
+  --color-link:      #06B6D4;  /* Vibrant Cyan */
+  --color-accent:    #EF476F;  /* Coral Pop */
+  --color-anim-1:    #06D6A0;  /* Mint Breeze */
+  --color-anim-2:    #118AB2;  /* Sky Reflection */
+  --color-anim-3:    #FFD166;  /* Golden Hour */
+  --color-anim-accent: #EF476F; /* Coral Pop (animation accent) */
+}
 html {
   box-sizing: border-box;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
-  background: #fff;
-  color: #222;
+  background: var(--color-bg);
+  color: var(--color-text);
   min-height: 100%;
 }
 *, *:before, *:after {
@@ -14,14 +27,14 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #fff;
-  color: #222;
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #fff;
+  background: var(--color-bg);
   border-bottom: 1px solid #eee;
   box-shadow: 0 2px 4px rgba(0,0,0,0.01);
 }
@@ -36,7 +49,7 @@ body {
 .nav-logo {
   font-weight: bold;
   font-size: 1.25rem;
-  color: #87CEEB;
+  color: var(--color-link);
   text-decoration: none;
   letter-spacing: 2px;
 }
@@ -48,13 +61,14 @@ body {
   padding: 0;
 }
 .nav-links a {
-  color: inherit;
+  color: var(--color-secondary);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
+  text-transform: uppercase;
 }
 .nav-links a:hover {
-  color: #87CEEB;
+  color: var(--color-accent);
 }
 .site-main {
   flex: 1 0 auto;
@@ -66,10 +80,10 @@ body {
   flex-shrink: 0;
   text-align: center;
   padding: 1rem 0;
-  background: #fff;
+  background: var(--color-bg);
   border-top: 1px solid #eee;
   font-size: 0.95rem;
-  color: #888;
+  color: var(--color-secondary);
 }
 #hero {
   position: relative;
@@ -80,7 +94,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #fff;
+  background: var(--color-bg);
 }
 #vanta-bg {
   position: absolute;
@@ -117,11 +131,11 @@ body {
   margin: 0.5rem 0 0.5rem 0;
   font-weight: 700;
   letter-spacing: -1px;
-  color: #222;
+  color: var(--color-headline);
 }
 .hero-subtitle {
   font-size: 1.25rem;
-  color: #87CEEB;
+  color: var(--color-link);
   margin-bottom: 2rem;
 }
 .hero-socials {
@@ -131,20 +145,20 @@ body {
   margin-bottom: 2rem;
 }
 .hero-socials a {
-  color: #87CEEB;
+  color: var(--color-link);
   font-size: 1.1rem;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s, transform 0.2s;
 }
 .hero-socials a:hover {
-  color: #005580;
+  color: var(--color-accent);
   transform: translateY(-2px) scale(1.1);
 }
 .scroll-down {
   margin-top: 2rem;
   font-size: 2rem;
-  color: #87CEEB;
+  color: var(--color-link);
   animation: bounce 1.5s infinite;
   animation-delay: 1.4s;
 }
@@ -325,21 +339,19 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 .blog-card {
   background: #fff;
-  border-radius: 1.25rem;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  transition: transform 0.18s, box-shadow 0.18s;
-  position: relative;
-  padding-bottom: 1.5rem;
+  transition: box-shadow 0.2s;
 }
-.blog-card:hover, .blog-card:focus-within {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+.blog-card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 .blog-thumb img {
   width: 100%;
@@ -385,6 +397,24 @@ body {
 }
 .blog-readmore:hover {
   color: #005580;
+}
+h1, h2, h3 {
+  color: var(--color-headline);
+}
+.section-bg-white {
+  background: #fff;
+  padding: 3rem 0 2rem 0;
+}
+.section-bg-grey {
+  background: #F3F4F6;
+  padding: 3rem 0 2rem 0;
+}
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-headline);
+  margin-bottom: 2rem;
+  text-align: center;
 }
 @media (max-width: 900px) {
   .about-container {
