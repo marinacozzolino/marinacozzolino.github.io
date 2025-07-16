@@ -1,3 +1,66 @@
+// Enhanced scroll position management - prevent bottom loading
+(function() {
+  // Immediately prevent any scroll behavior
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+  }
+  
+  // Clear any hash from URL that might cause auto-scroll
+  if (window.location.hash) {
+    // Replace current state without hash to prevent auto-scrolling
+    history.replaceState(null, null, window.location.pathname);
+  }
+  
+  // Force scroll to top immediately and repeatedly
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  
+  // Prevent hash-based navigation during initial load
+  let isInitialLoad = true;
+  
+  // Monitor and correct scroll position during load
+  const scrollMonitor = setInterval(function() {
+    if (isInitialLoad && (window.pageYOffset > 0 || document.documentElement.scrollTop > 0)) {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+  }, 10);
+  
+  // Handle DOM load completion
+  document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Stop aggressive monitoring after load, but keep checking briefly
+    setTimeout(function() {
+      clearInterval(scrollMonitor);
+      isInitialLoad = false;
+      
+      // Final position verification
+      window.scrollTo(0, 0);
+    }, 1000);
+  });
+  
+  // Handle page navigation events
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted || !isInitialLoad) {
+      window.scrollTo(0, 0);
+    }
+  });
+  
+  // Prevent scroll on hash change during initial load
+  window.addEventListener('hashchange', function(event) {
+    if (isInitialLoad) {
+      event.preventDefault();
+      window.scrollTo(0, 0);
+      return false;
+    }
+  });
+})();
+
 // VANTA.BIRDS hero background
 (function() {
   document.addEventListener('DOMContentLoaded', function() {
@@ -11,9 +74,9 @@
         minWidth: 200.00,
         scale: 1.00,
         scaleMobile: 1.00,
-        backgroundColor: 0xffffff,
-        color1: 0x80CBC4,
-        color2: 0xFFB997,
+        backgroundColor: 0x29212c, // raisin-black background
+        color1: 0xff1744, // vibrant red (like the "G" in Galaxy)
+        color2: 0xff9500, // bright orange (like the "y" in Galaxy)
         birdSize: 0.40,
         wingSpan: 40.00,
         speedLimit: 3.00,
