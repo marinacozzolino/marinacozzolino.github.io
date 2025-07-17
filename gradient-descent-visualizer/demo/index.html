@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Descent Visualizer Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .demo-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .demo-section p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .visualizer-container {
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .feature-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+        
+        .feature-card li:before {
+            content: "✓ ";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .feature-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .code-example .keyword {
+            color: #63b3ed;
+        }
+        
+        .code-example .string {
+            color: #68d391;
+        }
+        
+        .code-example .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 50px;
+        }
+        
+        .footer a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .demo-section {
+                padding: 20px;
+            }
+            
+            .visualizer-container {
+                height: 500px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Gradient Descent Visualizer</h1>
+            <p>Interactive web-based visualization of gradient descent optimization algorithms. Watch as points "roll down" mathematical surfaces to find global minima in real-time.</p>
+        </div>
+    </header>
+    
+    <main class="main-container">
+        <section class="demo-section">
+            <h2>🚀 Interactive Demo</h2>
+            <p>Experience gradient descent in action! Choose between different optimization functions, switch between 2D contour plots and 3D surfaces, and watch the algorithm converge to the global minimum.</p>
+            
+            <div class="visualizer-container" id="main-visualizer">
+                <!-- Visualizer will be inserted here -->
+            </div>
+        </section>
+        
+        <section class="demo-section">
+            <h2>✨ Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🎯 Multiple Optimization Functions</h3>
+                    <ul>
+                        <li>Quadratic Bowl (convex)</li>
+                        <li>Rosenbrock Function (non-convex)</li>
+                        <li>Rastrigin Function (multimodal)</li>
+                        <li>Custom function support</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🎨 Dual Visualization Modes</h3>
+                    <ul>
+                        <li>2D contour plots with heatmaps</li>
+                        <li>3D surface visualization</li>
+                        <li>Interactive camera controls</li>
+                        <li>Real-time optimization trails</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>⚡ Animation Controls</h3>
+                    <ul>
+                        <li>Play/Pause/Step modes</li>
+                        <li>Adjustable animation speed</li>
+                        <li>Real-time parameter tuning</li>
+                        <li>Reset and restart functionality</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📊 Performance Metrics</h3>
+                    <ul>
+                        <li>Live iteration counter</li>
+                        <li>Function value tracking</li>
+                        <li>Gradient magnitude display</li>
+                        <li>Convergence detection</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🛠️ Developer Friendly</h3>
+                    <ul>
+                        <li>ES6 module architecture</li>
+                        <li>NPM package distribution</li>
+                        <li>TypeScript type definitions</li>
+                        <li>Comprehensive API documentation</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📱 Responsive Design</h3>
+                    <ul>
+                        <li>Mobile-friendly interface</li>
+                        <li>Adaptive canvas sizing</li>
+                        <li>Touch-friendly controls</li>
+                        <li>Cross-browser compatibility</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="demo-section">
+            <h2>💻 Quick Start</h2>
+            <p>Get started with the Gradient Descent Visualizer in just a few lines of code:</p>
+            
+            <div class="code-example">
+<span class="comment">// Install via npm</span>
+<span class="keyword">npm install</span> gradient-descent-visualizer
+
+<span class="comment">// Import and use</span>
+<span class="keyword">import</span> { <span class="string">createVisualizer</span> } <span class="keyword">from</span> <span class="string">'gradient-descent-visualizer'</span>;
+
+<span class="comment">// Create visualizer instance</span>
+<span class="keyword">const</span> container = document.getElementById(<span class="string">'my-container'</span>);
+<span class="keyword">const</span> visualizer = createVisualizer(container, {
+  mode: <span class="string">'2d'</span>,               <span class="comment">// '2d' or '3d'</span>
+  initialFunction: <span class="string">'quadratic'</span>, <span class="comment">// Built-in function</span>
+  initialPosition: { x: 2, y: 2 },    <span class="comment">// Starting point</span>
+  learningRate: 0.1,                  <span class="comment">// Step size</span>
+  autoPlay: <span class="keyword">true</span>                     <span class="comment">// Start immediately</span>
+});
+
+<span class="comment">// Add event listeners</span>
+visualizer.onConvergence = (stats) => {
+  console.log(<span class="string">'Converged in'</span>, stats.iterations, <span class="string">'steps'</span>);
+};
+            </div>
+            
+            <p>That's it! The visualizer will handle everything else, including UI controls, animation, and performance optimization.</p>
+        </section>
+        
+        <section class="demo-section">
+            <h2>🎓 Educational Applications</h2>
+            <p>Perfect for:</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>📚 Academic Courses</h3>
+                    <ul>
+                        <li>Machine Learning lectures</li>
+                        <li>Optimization theory classes</li>
+                        <li>Mathematical analysis</li>
+                        <li>Computer science tutorials</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>💼 Professional Training</h3>
+                    <ul>
+                        <li>Data science workshops</li>
+                        <li>Algorithm demonstrations</li>
+                        <li>Technical presentations</li>
+                        <li>Interactive documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>
+            Built with ❤️ by <a href="https://github.com/marinacozzolino" target="_blank">Marina Cozzolino</a> | 
+            <a href="https://github.com/marinacozzolino/gradient-descent-visualizer" target="_blank">View on GitHub</a>
+        </p>
+    </footer>
+    
+    <!-- Three.js for 3D visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r155/three.min.js"></script>
+    
+    <!-- Main demo script -->
+    <script type="module">
+        import { createVisualizer } from '../src/index.js';
+        
+        // Initialize the main demo visualizer
+        const container = document.getElementById('main-visualizer');
+        
+        const visualizer = createVisualizer(container, {
+            mode: '2d',
+            showControls: true,
+            autoPlay: false,
+            initialFunction: 'quadratic',
+            initialPosition: { x: 2.5, y: 2.5 },
+            learningRate: 0.1,
+            animationSpeed: 1.5
+        });
+        
+        // Add event listeners for demo purposes
+        visualizer.onConvergence = (stats) => {
+            console.log('🎯 Optimization converged!', stats);
+            
+            // Show convergence notification
+            showNotification(`Converged in ${stats.iterations} iterations! Final value: ${stats.finalValue.toFixed(6)}`);
+        };
+        
+        visualizer.onStep = (state) => {
+            // Optional: Log progress for debugging
+            if (state.iteration % 10 === 0) {
+                console.log(`Step ${state.iteration}: f(${state.position.x.toFixed(3)}, ${state.position.y.toFixed(3)}) = ${state.functionValue.toFixed(6)}`);
+            }
+        };
+        
+        // Utility function to show notifications
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #4CAF50;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-family: 'Segoe UI', sans-serif;
+                font-weight: 500;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 5000);
+        }
+        
+        // Optional: Demonstrate programmatic control
+        console.log('🚀 Gradient Descent Visualizer Demo loaded!');
+        console.log('💡 Try different functions and parameters using the controls below the visualization.');
+        console.log('📊 Current state:', visualizer.getCurrentState());
+    </script>
+</body>
+</html> 

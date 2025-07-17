@@ -71,11 +71,11 @@
         window.vantaEffect = null;
       }
       
-      const themeStylesheet = document.getElementById('theme-stylesheet');
-      const isNightTheme = themeStylesheet && themeStylesheet.href.includes('night.css');
+      const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+      const isDarkTheme = currentTheme === 'dark';
       
-      if (isNightTheme && window.VANTA && window.VANTA.DOTS) {
-        // Night theme - use DOTS
+      if (isDarkTheme && window.VANTA && window.VANTA.DOTS) {
+        // Dark theme - use DOTS
         window.vantaEffect = window.VANTA.DOTS({
           el: "#vanta-bg",
           mouseControls: true,
@@ -91,8 +91,8 @@
           size: 4.00,
           spacing: 30.00
         });
-      } else if (!isNightTheme && window.VANTA && window.VANTA.BIRDS) {
-        // Day theme - use BIRDS
+      } else if (!isDarkTheme && window.VANTA && window.VANTA.BIRDS) {
+        // Light theme - use BIRDS
         window.vantaEffect = window.VANTA.BIRDS({
           el: "#vanta-bg",
           mouseControls: true,

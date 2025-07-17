@@ -1,0 +1,67 @@
+{
+  "name": "gradient-descent-visualizer",
+  "version": "1.0.0",
+  "description": "Interactive web-based gradient descent visualization tool with 2D and 3D animations",
+  "type": "module",
+  "main": "dist/gradient-descent-visualizer.js",
+  "module": "src/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gradient-descent-visualizer.esm.js",
+      "require": "./dist/gradient-descent-visualizer.cjs.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite serve demo",
+    "build": "rollup -c",
+    "build:demo": "vite build demo",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "docs": "jsdoc -c jsdoc.conf.json",
+    "serve": "vite preview demo"
+  },
+  "keywords": [
+    "gradient-descent",
+    "optimization",
+    "visualization",
+    "machine-learning",
+    "education",
+    "three.js",
+    "canvas",
+    "animation"
+  ],
+  "author": "Marina Cozzolino",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.158.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdoc": "^4.0.2",
+    "rollup": "^4.9.6",
+    "vite": "^5.0.12"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"]
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marinacozzolino/gradient-descent-visualizer.git"
+  },
+  "homepage": "https://marinacozzolino.github.io/gradient-descent-visualizer"
+} 
