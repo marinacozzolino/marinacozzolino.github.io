@@ -159,6 +159,15 @@ body {
 /* Center only section titles */
 .section-title {
   text-align: center;
+  margin: 0 0 2.5rem 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ff1744, #fa2c56, #f95141, #ff6b35);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
 }
 
 /* Add margin to View All buttons */
@@ -417,18 +426,17 @@ body {
 
 /* About */
 .about-container {
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 3rem;
   margin-top: 2rem;
-  max-width: 700px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
-  height: auto;
+  align-items: center;
 }
 
 .about-headshot {
-  flex: 1 1 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -436,8 +444,8 @@ body {
 
 .about-headshot img {
   width: 100%;
+  max-width: 350px;
   height: auto;
-  max-width: 320px;
   max-height: 500px;
   border-radius: 0;
   object-fit: cover;
@@ -446,7 +454,6 @@ body {
 }
 
 .about-bio {
-  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -856,15 +863,12 @@ h1, h2, .section-title, .hero-overlay h1 {
 /* Responsive */
 @media (max-width: 900px) {
   .about-container {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     max-width: 95vw;
   }
   .about-headshot img {
-    width: 90vw;
-    height: auto;
-    max-width: 320px;
+    max-width: 90vw;
     max-height: 60vw;
   }
   .portfolio-grid,
