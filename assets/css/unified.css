@@ -421,6 +421,9 @@ body {
   align-items: flex-start;
   gap: 3rem;
   margin-top: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .about-headshot {
@@ -428,8 +431,8 @@ body {
 }
 
 .about-headshot img {
-  width: 220px;
-  height: 300px;
+  width: 320px;
+  height: 420px;
   border-radius: 0;
   object-fit: cover;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -842,6 +845,11 @@ h1, h2, .section-title, .hero-overlay h1 {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    max-width: 95vw;
+  }
+  .about-headshot img {
+    width: 220px;
+    height: 300px;
   }
   .portfolio-grid,
   .blog-grid,
