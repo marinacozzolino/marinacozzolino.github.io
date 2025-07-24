@@ -428,9 +428,9 @@ body {
 }
 
 .about-headshot img {
-  width: 300px;
+  width: 220px;
   height: 300px;
-  border-radius: 50%;
+  border-radius: 0;
   object-fit: cover;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
