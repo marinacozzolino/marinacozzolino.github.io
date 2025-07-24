@@ -418,24 +418,33 @@ body {
 /* About */
 .about-container {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 3rem;
   margin-top: 2rem;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  height: 60vh;
+  min-height: 400px;
+  position: relative;
 }
 
 .about-headshot {
   flex-shrink: 0;
+  height: 95%;
+  display: flex;
+  align-items: center;
 }
 
 .about-headshot img {
-  width: 320px;
-  height: 420px;
+  height: 95%;
+  width: auto;
+  max-width: 100%;
+  max-height: 95vh;
   border-radius: 0;
   object-fit: cover;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: block;
 }
 
 .about-text {
@@ -846,10 +855,19 @@ h1, h2, .section-title, .hero-overlay h1 {
     align-items: center;
     gap: 1.5rem;
     max-width: 95vw;
+    height: auto;
+    min-height: unset;
+  }
+  .about-headshot {
+    height: auto;
+    width: 100%;
+    justify-content: center;
   }
   .about-headshot img {
-    width: 220px;
-    height: 300px;
+    width: 90vw;
+    height: auto;
+    max-width: 320px;
+    max-height: 60vw;
   }
   .portfolio-grid,
   .blog-grid,
