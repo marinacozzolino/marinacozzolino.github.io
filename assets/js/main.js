@@ -175,6 +175,11 @@
     document.querySelectorAll('.portfolio-card, .blog-card').forEach(card => {
       card.addEventListener('click', function(e) {
         e.preventDefault();
+        const link = card.getAttribute('data-link');
+        if (link && link !== '#') {
+          window.open(link, '_blank');
+          return;
+        }
         openModal(
           card.getAttribute('data-title'),
           card.getAttribute('data-desc'),
